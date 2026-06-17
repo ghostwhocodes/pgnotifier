@@ -1,0 +1,52 @@
+/*
+ * Copyright 2016-2026 Nos Doughty
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package pgnotifier;
+
+/**
+ * Public lifecycle state exposed by slot health snapshots.
+ */
+public enum ProcessState {
+    /**
+     * The worker has accepted a start request and is being scheduled.
+     */
+    STARTING,
+
+    /**
+     * The worker is actively running.
+     */
+    RUNNING,
+
+    /**
+     * The worker failed and is waiting before a restart attempt.
+     */
+    BACKING_OFF,
+
+    /**
+     * A stop request has been accepted and the worker is shutting down.
+     */
+    STOPPING,
+
+    /**
+     * The worker is not running.
+     */
+    STOPPED,
+
+    /**
+     * The worker failed and restart policy will not restart it.
+     */
+    FAILED
+}
