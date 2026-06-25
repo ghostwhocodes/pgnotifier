@@ -1,5 +1,13 @@
 # pgnotifier
 
+<p align="center">
+  <img src="./.github/assets/banner.webp" alt="pgnotifier banner">
+</p>
+
+<p align="center">
+  <a href="https://ghost-who-codes.blog/open-source/pgnotifier/">Project page on Ghost Who Codes</a>
+</p>
+
 Small Java 25 library and tools for consuming PostgreSQL logical replication slots, aimed at being:
 
 - Lightweight and embeddable (no heavy framework).
