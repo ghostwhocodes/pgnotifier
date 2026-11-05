@@ -45,34 +45,11 @@ Do not commit secrets or environment-specific credentials. Prefer environment va
 
 Always read `AGENTS.md` first.
 
-For long-horizon tasks, prefer task-local documents under `ai/tasks/<task-slug>/`:
+## Agent Environment
 
-1. `ai/tasks/<task-slug>/Prompt.md`
-2. `ai/tasks/<task-slug>/Contract.md`
-3. `ai/tasks/<task-slug>/Plan.md`
-4. `ai/tasks/<task-slug>/Implement.md`
-5. `ai/tasks/<task-slug>/Documentation.md`
-6. `ai/tasks/<task-slug>/Closeout.md`
-
-Treat task-local `Prompt.md` as the active spec, `Contract.md` as the completion boundary, `Plan.md` as advisory milestone decomposition, `Implement.md` as the operating runbook, `Documentation.md` as the live status log, and `Closeout.md` as the structured closeout evidence the wrapper verifies before completion.
-
-Historical tasks under `ai/tasks/completed/` are archival records, not runnable tasks.
-
-## Long-Horizon Workflow
-
-- Prefer one task directory per long-horizon effort under `ai/tasks/<task-slug>/`.
-- Work one milestone at a time and keep diffs scoped to the active milestone.
-- Run milestone validation before moving on.
-- Run contract-relevant validations through `./codex/run-task-command.sh --task <task-slug> --validation-id <id> -- <command>`.
-- Update the active task `Documentation.md` after each milestone with status, decisions, validations, anomalies, and the next action.
-- Keep `Closeout.md` current once requirement, review, or handoff evidence changes.
-- Do not treat a task as complete until final validation, merge-readiness review, and `./codex/check-contract.py --task <task-slug>` have all passed.
-
-## Long-Horizon Environment
-
-- Use `./codex/mvnw.sh ...` for Maven commands during long-horizon runs. The wrapper executes from the repository root and loads a compatible JDK based on the repository Maven configuration when possible.
-- For Java-touching long-horizon tasks, the required validation gate after each Java change and again at closeout is `./codex/mvnw.sh clean verify` unless the task contract explicitly says otherwise.
-- The default sandbox for unattended long-horizon Codex runs in this repository is `danger-full-access` because the workflow relies on repository-local task state plus normal Maven/JDK cache access.
+- Use `./codex/mvnw.sh ...` for Maven commands. The wrapper executes from the repository root and loads a compatible JDK based on the repository Maven configuration when possible.
+- For Java-touching tasks, the required validation gate after each Java change and before completion is `./codex/mvnw.sh clean verify` unless the task explicitly says otherwise.
+- The default sandbox for unattended Codex runs in this repository is `danger-full-access` because validation relies on normal Maven/JDK cache access.
 
 # =========================
 # AGENT: architect
